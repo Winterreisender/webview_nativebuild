@@ -7,3 +7,4 @@ Files.wxs
 *.wixobj
 *.wixpdb
 *.msi
+.idea

@@ -1,7 +1,7 @@
-name: WebviewNative
+name: Webview Binary Build
 on:
   push:
-    branches: [feature-nativeUpdate]
+    branches: [main]
 
 jobs:
   build-linux:
