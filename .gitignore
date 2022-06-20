@@ -7,4 +7,5 @@ Files.wxs
 *.wixobj
 *.wixpdb
 *.msi
-.idea
+.idea/
+libs/
