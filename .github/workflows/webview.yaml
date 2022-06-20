@@ -51,7 +51,7 @@ jobs:
       - name: Fetch Webview2Loader in Windows
         uses: Amadevus/pwsh-script@v2.0.1
         with: 
-          script: FetchWebview2Loader.ps1
+          script: pwsh FetchWebview2Loader.ps1
 
       - name: Run CMake
         uses: lukka/run-cmake@v10
