@@ -44,14 +44,17 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Fetch Webview2Loader in Windows
+        shell: powershell
+        run: |
+          ./FetchWebview2Loader.ps1
+    
+      - name: Setup Windows 10 SDK
       - uses: GuillaumeFalourd/setup-windows10-sdk-action@v1.2
+      
       - name: Get CMake
         uses: lukka/get-cmake@latest
-  
-      - name: Fetch Webview2Loader in Windows
-        uses: Amadevus/pwsh-script@v2.0.1
-        with: 
-          script: pwsh FetchWebview2Loader.ps1
 
       - name: Run CMake
         uses: lukka/run-cmake@v10
