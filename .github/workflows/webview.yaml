@@ -4,6 +4,39 @@ on:
     branches: [master]
 
 jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Fetch Webview2Loader in Windows
+        uses: Amadevus/pwsh-script@v2.0.1
+        with:
+          script: pwsh ./FetchWebview2Loader.ps1
+
+      - name: Setup MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: >-
+            mingw-w64-x86_64-toolchain
+            mingw-w64-x86_64-cmake
+            mingw-w64-x86_64-ninja
+
+      - name: Get CMake
+        uses: lukka/get-cmake@latest
+      - name: Run CMake
+        uses: lukka/run-cmake@v10
+        with:
+          configurePreset: 'ninja'
+          buildPreset: 'ninja'
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: "webview-win64"
+          path: ./build
+
+
   build-linux:
     runs-on: ubuntu-latest
     steps:
@@ -40,34 +73,3 @@ jobs:
           name: "webview-mac64"
           path: ./build
 
-  build-windows:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v2
-      
-      - name: Fetch Webview2Loader in Windows
-        uses: Amadevus/pwsh-script@v2.0.1
-        with: 
-          script: pwsh ./FetchWebview2Loader.ps1
-      
-      - name: Setup MSYS2
-        uses: msys2/setup-msys2@v2
-        with:
-          update: true
-          install: >-
-            mingw-w64-x86_64-toolchain
-            mingw-w64-x86_64-cmake
-            mingw-w64-ninja
-
-      - name: Get CMake
-        uses: lukka/get-cmake@latest
-      - name: Run CMake
-        uses: lukka/run-cmake@v10
-        with:
-          configurePreset: 'ninja'
-          buildPreset: 'ninja'
-      - name: Upload artifact
-        uses: actions/upload-artifact@v1.0.0
-        with:
-          name: "webview-win64"
-          path: ./build
