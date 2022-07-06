@@ -50,14 +50,22 @@ jobs:
         with: 
           script: pwsh ./FetchWebview2Loader.ps1
       
-      - uses: GuillaumeFalourd/setup-windows10-sdk-action@v1.2
+      - name: Setup MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: >-
+            mingw-w64-x86_64-toolchain
+            mingw-w64-x86_64-cmake
+            mingw-w64-ninja
+
       - name: Get CMake
         uses: lukka/get-cmake@latest
       - name: Run CMake
         uses: lukka/run-cmake@v10
         with:
-          configurePreset: 'windows'
-          buildPreset: 'windows'
+          configurePreset: 'ninja'
+          buildPreset: 'ninja'
       - name: Upload artifact
         uses: actions/upload-artifact@v1.0.0
         with:
