@@ -26,7 +26,7 @@ include(FetchContent)
 FetchContent_Declare(
     webviewNative
     GIT_REPOSITORY https://github.com/webview/webview
-    GIT_TAG e5beff57354a74935eedffcda1ca8090aa33e810
+    GIT_TAG 84091846557f683ef9e8c776a0d9ada8365c8d47
 )
 FetchContent_Populate(webviewNative)
 
