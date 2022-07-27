@@ -23,8 +23,8 @@ endif()
 include(FetchContent)
 FetchContent_Declare(
     webviewNative
-    GIT_REPOSITORY https://github.com/SteffenL/webview
-    GIT_TAG 604cc4520f012d0e437e824043f81613592a55fe
+    GIT_REPOSITORY https://github.com/webview/webview
+    GIT_TAG 84091846557f683ef9e8c776a0d9ada8365c8d47
 )
 FetchContent_Populate(webviewNative)
 
