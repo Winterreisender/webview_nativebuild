@@ -5,9 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_BUILD_TYPE Release)
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-    #set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
-    #set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
-    #set(CMAKE_BUILD_TYPE Release)
+    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -mwindows -static -static-libgcc -static-libstdc++")
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     find_package(PkgConfig REQUIRED)
     pkg_check_modules(
@@ -25,8 +23,8 @@ endif()
 include(FetchContent)
 FetchContent_Declare(
     webviewNative
-    GIT_REPOSITORY https://github.com/webview/webview
-    GIT_TAG 5376baea64f02c02ddec375d58a9a62fe0e07db8
+    GIT_REPOSITORY https://github.com/SteffenL/webview
+    GIT_TAG 604cc4520f012d0e437e824043f81613592a55fe
 )
 FetchContent_Populate(webviewNative)
 
@@ -40,8 +38,10 @@ add_library(webview SHARED "${webviewnative_SOURCE_DIR}/webview.cc")
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     target_compile_definitions(webview PRIVATE "WEBVIEW_API=__declspec(dllexport)")
+
     target_link_libraries(webview 
         WebView2Loader.dll.lib
+        gcc_eh
         ole32
         shell32
         shlwapi
