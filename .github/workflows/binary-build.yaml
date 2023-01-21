@@ -33,7 +33,7 @@ jobs:
   build-macos:
     strategy:
       matrix:
-        arch: [x86_64, arm64]
+        arch: [x86_64]
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
@@ -54,6 +54,9 @@ jobs:
           path: ./build/macosx/${{ matrix.arch }}
 
   build-linux:
+    strategy:
+      matrix:
+        arch: [x86_64, i386, arm64-v8a]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -72,5 +75,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: "webview-linux64"
-          path: ./build/linux
+          name: webview-linux-${{ matrix.arch }}
+          path: ./build/linux/${{ matrix.arch }}

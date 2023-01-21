@@ -55,6 +55,10 @@ target("webview_shared")
         add_defines("WEBVIEW_API=__declspec(dllexport)")
     end
 
+    if is_plat("macosx") then
+        add_cxxflags("--framework Webkit")
+    end
+
     add_files("src/webview.cpp")
 target_end()
 
@@ -66,6 +70,10 @@ target("webview_test")
     if is_plat("linux") then
         add_packages("pkgconfig::gtk+-3.0")
         add_packages("pkgconfig::webkit2gtk-4.0")
+    end
+
+    if is_plat("macosx") then
+        add_cxxflags("--framework Webkit")
     end
 
     add_files("src/test.cpp")
