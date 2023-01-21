@@ -1,0 +1,52 @@
+name: Build Binary
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: xmake-io/github-action-setup-xmake@v1
+        with:
+          xmake-version: latest
+
+      - name: Build
+        run: |
+          xmake f -p windows -a x64 -m release
+          xmake build webview_shared
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: "webview-win64"
+          path: ./build/windows/x64
+
+
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install libwebkit2gtk-4.0-dev xvfb -y
+      
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: "webview-linux64"
+          path: ./build
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: "webview-mac64"
+          path: ./build
+
