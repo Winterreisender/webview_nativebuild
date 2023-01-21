@@ -17,11 +17,12 @@ jobs:
 
       - uses: xmake-io/github-action-setup-xmake@v1
         with:
-          xmake-version: latest
+          xmake-version: '>=2.7.5 <3.0.0'
+          actions-cache-folder: '.xmake-cache'
 
       - name: Build
         run: |
-          xmake f -p windows -a ${{ matrix.arch }} -m release -y
+          xmake f -p windows -a ${{ matrix.arch }} -m release -y -v
           xmake build -y webview_shared
 
       - name: Upload artifact
@@ -40,11 +41,12 @@ jobs:
 
       - uses: xmake-io/github-action-setup-xmake@v1
         with:
-          xmake-version: latest
+          xmake-version: '>=2.7.5 <3.0.0'
+          actions-cache-folder: '.xmake-cache'
 
       - name: Build
         run: |
-          xmake f -p macosx -a ${{ matrix.arch }} --toolchain=gcc -m release -y
+          xmake f -p macosx -a ${{ matrix.arch }} --toolchain=gcc -m release -y -v
           xmake build -y webview_shared
 
       - name: Upload artifact
@@ -60,16 +62,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install libwebkit2gtk-4.0-dev xvfb -y
       
       - uses: xmake-io/github-action-setup-xmake@v1
         with:
-          xmake-version: latest
+          xmake-version: '>=2.7.5 <3.0.0'
+          actions-cache-folder: '.xmake-cache'
 
       - name: Build
         run: |
-          xmake f -p linux -a x86_64 --toolchain=gcc -m release -y
+          xmake f -p linux -a ${{ matrix.arch }} --toolchain=gcc -m release -y -v
           xmake build -y webview_shared
       
       - name: Upload artifact
