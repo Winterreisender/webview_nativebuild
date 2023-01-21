@@ -16,7 +16,7 @@ jobs:
       - name: Build
         run: |
           xmake f -p windows -a x64 -m release
-          xmake build webview_shared
+          xmake build -y webview_shared
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
@@ -32,6 +32,14 @@ jobs:
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install libwebkit2gtk-4.0-dev xvfb -y
       
+      - uses: xmake-io/github-action-setup-xmake@v1
+        with:
+          xmake-version: latest
+
+      - name: Build
+        run: |
+          xmake f -p windows -a x64 -m release
+          xmake build -y webview_shared
       
       - name: Upload artifact
         uses: actions/upload-artifact@v3
@@ -43,6 +51,15 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
+      
+      - uses: xmake-io/github-action-setup-xmake@v1
+        with:
+          xmake-version: latest
+
+      - name: Build
+        run: |
+          xmake f -p windows -a x64 -m release
+          xmake build -y webview_shared
       
       - name: Upload artifact
         uses: actions/upload-artifact@v3
