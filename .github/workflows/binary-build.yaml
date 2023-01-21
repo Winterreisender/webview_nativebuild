@@ -33,7 +33,7 @@ jobs:
   build-macos:
     strategy:
       matrix:
-        arch: [x86_64]
+        arch: [x86_64, arm64]
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
@@ -44,7 +44,7 @@ jobs:
 
       - name: Build
         run: |
-          xmake f -p macosx -a ${{ matrix.arch }} -m release -y
+          xmake f -p macosx -a ${{ matrix.arch }} --toolchain=gcc -m release -y
           xmake build -y webview_shared
 
       - name: Upload artifact
@@ -69,7 +69,7 @@ jobs:
 
       - name: Build
         run: |
-          xmake f -p linux -a x86_64 -m release -y
+          xmake f -p linux -a x86_64 --toolchain=gcc -m release -y
           xmake build -y webview_shared
       
       - name: Upload artifact

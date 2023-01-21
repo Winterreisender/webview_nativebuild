@@ -1,4 +1,5 @@
-xmake f -p windows -a x64 -m release -y
+xmake f -p windows -a x64 -m release -y -v
+--toolchain=gcc
 xmake build -v webview_shared
 ls ./build/windows/x64/release/
 
