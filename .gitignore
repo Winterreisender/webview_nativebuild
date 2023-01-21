@@ -9,3 +9,7 @@ Files.wxs
 *.msi
 .idea/
 libs/*
+vc/
+
+.xmake
+.vscode

@@ -1,30 +1,12 @@
-# webview Binary
+# Win64
+xmake f -p windows -a x64
+xmake
 
-Just for build webview for [webviewko](https://github.com/Winterreisender/webviewko).
+# Win32
+xmake f -p windows -a x86
+xmake
 
-Copied from [webview_csharp](https://github.com/webview/webview_csharp) licensed under [MIT](https://github.com/webview/webview_csharp/blob/master/LICENSE)
-
-## Usage
-
-### Use GitHub Actions
-
-1. Edit the `GIT_TAG` of `CMakeLists.txt`
-2. Push
-3. See GitHub Actions
-
-### Build Locally
-
-```shell
-cmake . -DCMAKE_BUILD_TYPE=Release
-```
-
-## License
-
-The source code is licensed under [MIT](LICENSE)
-
----
-
-```shell
+# WinArm64
 xmake f
   -p windows 
   -a arm64
@@ -37,4 +19,3 @@ xmake f
   --sh="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\bin\Hostx64\arm64\link.exe" 
   --ar="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\bin\Hostx64\arm64\lib.exe" 
 && xmake
-```
