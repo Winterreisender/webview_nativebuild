@@ -17,15 +17,12 @@ package("webview")
     set_description("Tiny cross-platform webview library for C/C++.")
     set_license("MIT")
 
-    add_deps("MSWebview2 1.0.1518.46")
-
     set_urls("https://github.com/webview/webview.git")
     add_versions("0.10.0", "14f8e24a873c7e8deb2b1dd29c8e5841529fe467")
     
     if is_plat("windows") then
         add_deps("MSWebview2 1.0.1518.46")
     elseif is_plat("linux") then 
-        
     end
 
     on_install(function (package)
@@ -39,19 +36,38 @@ package_end()
 
 add_requires("webview 0.10.0")
 
+if is_plat("linux") then
+    add_requires("pkgconfig::gtk+-3.0", "pkgconfig::webkit2gtk-4.0", {system = true})
+end
+
 target("webview_shared")
-    set_languages("c++17")
     set_kind("shared")
+    set_languages("c++17")
     add_packages("webview")
-    add_cxxflags("/EHsc")
-    add_defines("WEBVIEW_API=__declspec(dllexport)")
+    
+    if is_plat("linux") then
+        add_packages("pkgconfig::gtk+-3.0")
+        add_packages("pkgconfig::webkit2gtk-4.0")
+    end
+
+    if is_plat("windows") then
+        add_cxxflags("/EHsc")
+        add_defines("WEBVIEW_API=__declspec(dllexport)")
+    end
+
     add_files("src/webview.cpp")
 target_end()
 
 target("webview_test")
-    set_languages("c++17")
     set_kind("binary")
+    set_languages("c++17")
     add_packages("webview")
+
+    if is_plat("linux") then
+        add_packages("pkgconfig::gtk+-3.0")
+        add_packages("pkgconfig::webkit2gtk-4.0")
+    end
+
     add_files("src/test.cpp")
 target_end()
 
