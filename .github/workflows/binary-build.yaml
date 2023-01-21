@@ -7,13 +7,11 @@ on:
     branches: [ master ]
 
 jobs:
-  build-win-mac:
+  build-windows:
     strategy:
       matrix:
-        os: [windows-latest, macos-latest]
-        platform: [windows, macosx]
-        arch: [x64, x86]
-    runs-on: ${{ matrix.os }}
+        arch: [x64, x86, arm64]
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
 
@@ -23,14 +21,37 @@ jobs:
 
       - name: Build
         run: |
-          xmake f -p ${{ matrix.platform }} -a ${{ matrix.arch }} -m release -y
+          xmake f -p windows -a ${{ matrix.arch }} -m release -y
           xmake build -y webview_shared
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: "webview-win64"
-          path: ./build/${{ matrix.platform }}/${{ matrix.arch }}
+          name: webview-windows-${{ matrix.arch }}
+          path: ./build/windows/${{ matrix.arch }}
+
+  build-macos:
+    strategy:
+      matrix:
+        arch: [x64, x86]
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: xmake-io/github-action-setup-xmake@v1
+        with:
+          xmake-version: latest
+
+      - name: Build
+        run: |
+          xmake f -p macosx -a ${{ matrix.arch }} -m release -y
+          xmake build -y webview_shared
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: webview-macosx-${{ matrix.arch }}
+          path: ./build/macosx/${{ matrix.arch }}
 
   build-linux:
     runs-on: ubuntu-latest
