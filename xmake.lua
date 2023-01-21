@@ -56,7 +56,7 @@ target("webview_shared")
     end
 
     if is_plat("macosx") then
-        set_languages("c++17")
+        set_languages("c++11")
         add_cxxflags("-framework WebKit")
     end
 
@@ -74,7 +74,7 @@ target("webview_test")
     end
 
     if is_plat("macosx") then
-        set_languages("c++17")
+        set_languages("c++11")
         add_cxxflags("-framework Webkit")
     end
 
