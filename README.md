@@ -4,11 +4,11 @@ Build shared binary libs for webview. And a xmake package for webview.
 
 ## Supported Platforms
 
-||Windows|Linux|macOS|
-|---|---|---|---|
-|x64|  ✔  | ✔ |WIP|
-|x32|  ✔  |WIP|-|
-|arm64|✔  | - |WIP|
+|       | Windows | Linux | macOS |
+| ----- | ------- | ----- | ----- |
+| x64   | ✔      | ✔    | WIP   |
+| x32   | ✔      | WIP   | -     |
+| arm64 | ✔      | ✔    | WIP   |
 
 ## Usage
 
