@@ -1,40 +1,33 @@
 # webview Binary
 
-Just for build webview for [webviewko](https://github.com/Winterreisender/webviewko).
-
-Copied from [webview_csharp](https://github.com/webview/webview_csharp) licensed under [MIT](https://github.com/webview/webview_csharp/blob/master/LICENSE)
+Build shared binary libs for webview. And a xmake package for webview.
 
 ## Usage
 
 ### Use GitHub Actions
 
-1. Edit the `GIT_TAG` of `CMakeLists.txt`
+1. Edit the `Git tag` of `xmake.lua`
 2. Push
 3. See GitHub Actions
 
 ### Build Locally
 
-```shell
-cmake . -DCMAKE_BUILD_TYPE=Release
-```
-
 ## License
 
-The source code is licensed under [MIT](LICENSE)
+Initially this repo is forked from webview_csharp which contains a CMake project. Now this project is totally diffierent and should be considered a brand new project.
 
----
+```
+     Copyright 2023 Winterreisender
 
-```shell
-xmake f
-  -p windows 
-  -a arm64
-  --sdk="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\" 
-  --cc="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\bin\Hostx64\arm64\cl.exe" 
-  --cxx="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\bin\Hostx64\arm64\cl.exe" 
-  --includedirs="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include;C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um;C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared;C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\winrt" 
-  --linkdirs="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\lib\arm64\;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.19041.0\um\arm64;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.19041.0\ucrt\arm64;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.19041.0\winrt\arm64" 
-  --ld="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\bin\Hostx64\arm64\link.exe" 
-  --sh="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\bin\Hostx64\arm64\link.exe" 
-  --ar="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\bin\Hostx64\arm64\lib.exe" 
-&& xmake
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
 ```
