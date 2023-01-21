@@ -15,7 +15,7 @@ jobs:
 
       - name: Build
         run: |
-          xmake f -p windows -a x64 -m release
+          xmake f -p windows -a x64 -m release -y
           xmake build -y webview_shared
 
       - name: Upload artifact
@@ -38,7 +38,7 @@ jobs:
 
       - name: Build
         run: |
-          xmake f -p windows -a x64 -m release
+          xmake f -p windows -a x64 -m release -y
           xmake build -y webview_shared
       
       - name: Upload artifact
@@ -58,7 +58,7 @@ jobs:
 
       - name: Build
         run: |
-          xmake f -p windows -a x64 -m release
+          xmake f -p windows -a x64 -m release -y
           xmake build -y webview_shared
       
       - name: Upload artifact
