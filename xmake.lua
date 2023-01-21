@@ -56,7 +56,7 @@ target("webview_shared")
     end
 
     if is_plat("macosx") then
-        add_cxxflags("--framework Webkit")
+        add_cxxflags("-framework Webkit")
     end
 
     add_files("src/webview.cpp")
@@ -73,7 +73,7 @@ target("webview_test")
     end
 
     if is_plat("macosx") then
-        add_cxxflags("--framework Webkit")
+        add_cxxflags("-framework Webkit")
     end
 
     add_files("src/test.cpp")
