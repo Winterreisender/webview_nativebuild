@@ -1,3 +1,5 @@
+# see .github/workflows/binary-build.yml for detailed build steps.
+
 xmake f -p windows -a x64 -m release -y -v
 --toolchain=gcc
 xmake build -v webview_shared
