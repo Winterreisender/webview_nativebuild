@@ -1,3 +1,7 @@
+**This project is moved to [webview-xmake](https://github.com/Winterreisender/webview-xmake)**
+
+---
+
 # webview Binary
 
 Build shared binary libs for webview using xmake. Also a xmake package for webview.
