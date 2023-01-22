@@ -58,8 +58,8 @@ target("webview_shared")
     if is_plat("macosx") then
         set_languages("c++11")
         add_mxflags("-framework WebKit")
-        add_cflags("-framework WebKit")
-        add_cxxflags("-framework WebKit")
+        add_cxflags("-framework WebKit")
+        add_frameworks("WebKit")
     end
 
     add_files("src/webview.cpp")
@@ -80,6 +80,7 @@ target("webview_test")
         add_mxflags("-framework WebKit")
         add_cflags("-framework WebKit")
         add_cxxflags("-framework WebKit")
+        add_frameworks("WebKit")
     end
 
     add_files("src/test.cpp")
