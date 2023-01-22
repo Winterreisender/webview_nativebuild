@@ -21,7 +21,7 @@ jobs:
 
       - name: Build
         run: |
-          xmake f -p windows -a ${{ matrix.arch }} -m release -y -v
+          xmake f -p windows -a ${{ matrix.arch }} -m release -y -vD
           xmake build -y -vD webview_shared
 
       - name: Upload artifact
@@ -44,7 +44,7 @@ jobs:
 
       - name: Build
         run: |
-          xmake f -p macosx -a ${{ matrix.arch }} --toolchain=gcc -m release -y -v
+          xmake f -p macosx -a ${{ matrix.arch }} -m release -y -vD
           xmake build -y -vD webview_shared
 
       - name: Upload artifact
@@ -70,7 +70,7 @@ jobs:
 
       - name: Build
         run: |
-          xmake f -p linux -a ${{ matrix.arch }} -m release -y -v
+          xmake f -p linux -a ${{ matrix.arch }} -m release -y -vD
           xmake build -y -vD webview_shared
       
       - name: Upload artifact
